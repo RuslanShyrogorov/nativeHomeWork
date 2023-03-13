@@ -82,17 +82,7 @@ export default function LoginScreen({
                   setIsRegister(true);
                 }}
               >
-                <Text
-                  activeOpacity={0.9}
-                  style={{
-                    color: "#1B4371",
-                    textAlign: "center",
-                    marginBottom: 144,
-                    fontSize: 16,
-                    lineHeight: 19,
-                    fontFamily: "Roboto-Regular",
-                  }}
-                >
+                <Text activeOpacity={0.9} style={styles.refText}>
                   Нет аккаунта? Зарегистрироваться
                 </Text>
               </TouchableOpacity>
@@ -160,5 +150,13 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     lineHeight: 19,
+  },
+  refText: {
+    color: "#1B4371",
+    textAlign: "center",
+    marginBottom: 78,
+    fontSize: 16,
+    lineHeight: 19,
+    fontFamily: "Roboto-Regular",
   },
 });
