@@ -4,6 +4,7 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
+  Dimensions,
 } from "react-native";
 
 import { useState, useEffect, useCallback } from "react";
@@ -18,6 +19,9 @@ import LoginScreen from "./components/LoginScreen";
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [isRegister, setIsRegister] = useState(true);
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 16 * 2
+  );
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -37,7 +41,20 @@ export default function App() {
     };
   }, []);
 
-  // FONTS
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 16 * 2;
+      setDimensions(width);
+    };
+    const widthCange = Dimensions.addEventListener("change", onChange);
+
+    return () => {
+      // Dimensions.removeEventListener("change", onChange);
+      widthCange.remove();
+    };
+  }, []);
+
+  // FONTS;
   const [fontsLoaded] = useFonts({
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
@@ -66,12 +83,14 @@ export default function App() {
               setIsShowKeyboard={setIsShowKeyboard}
               isShowKeyboard={isShowKeyboard}
               setIsRegister={setIsRegister}
+              dimensions={dimensions}
             />
           ) : (
             <LoginScreen
               setIsShowKeyboard={setIsShowKeyboard}
               isShowKeyboard={isShowKeyboard}
               setIsRegister={setIsRegister}
+              dimensions={dimensions}
             />
           )}
         </ImageBackground>

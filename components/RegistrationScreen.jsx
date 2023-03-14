@@ -20,6 +20,7 @@ export default function RegistrationScreen({
   setIsShowKeyboard,
   isShowKeyboard,
   setIsRegister,
+  dimensions,
 }) {
   const [stateForm, setStateForm] = useState(initialState);
 
@@ -34,7 +35,7 @@ export default function RegistrationScreen({
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <View style={styles.formContainer}>
-        <View style={styles.form}>
+        <View style={{ justifyContent: "flex-end", width: dimensions }}>
           <Text style={styles.formTitle}>Регистрация</Text>
           <TextInput
             onChangeText={(value) =>
@@ -111,6 +112,7 @@ const styles = StyleSheet.create({
   formContainer: {
     // flex: 1,
     display: "flex",
+    alignItems: "center",
     flexDirection: "column",
     backgroundColor: "#FFFFFF",
     borderTopLeftRadius: 25,
@@ -118,8 +120,8 @@ const styles = StyleSheet.create({
   },
   form: {
     // flex: 1,
-    marginHorizontal: 16,
-    justifyContent: "flex-end",
+    // marginHorizontal: 16,
+    // justifyContent: "flex-end",
   },
   formTitle: {
     fontFamily: "Roboto-Medium",
